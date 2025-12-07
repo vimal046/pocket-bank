@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.pocketbank.entity.User;
@@ -26,4 +27,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	//Find all users by role
 	List<User> findByRole(Role role);
+	
+    // Count total customers
+    @Query("SELECT COUNT(u) FROM User u WHERE u.role = 'CUSTOMER'")
+    Long countCustomers();
 }
