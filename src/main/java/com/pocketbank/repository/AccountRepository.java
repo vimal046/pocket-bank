@@ -26,6 +26,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 	//Find all accounts by status
 	List<Account> findByStatus(AccountStatus status);
 	
-	//Find all pending accounts(for admin approval)
-	List<Account> 
+	
 }

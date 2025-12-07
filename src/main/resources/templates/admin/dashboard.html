@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - PocketBank</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+        body{
+            background: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .main-container{
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card{
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .stat-card{
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+        .stat-card h3{
+          font-size: 2.5rem;
+          font-weight: bold;
+        }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div class="container-fluid main-container">
+        <a href="/" class="navbar-brand"
+          ><i class="bi bi-bank2"></i> PocketBank Admin</a
+        >
+        <div class="navbar-nav ms-auto">
+          <a href="/admin/users" class="nav-link">Users</a>
+          <a href="/admin/accounts" class="nav-link">Accounts</a>
+          <a href="/admin/loans" class="nav-link">Loans</a>
+          <a href="/admin/reports" class="nav-link">Reports</a>
+          <form th:action="@{/logout}" method="post" style="display: inline">
+            <button class="btn btn-outline-light btn-sm ms-2">Logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main-container mt-4">
+      <h2 class="mb-4"><i class="bi bi-speedometer2"></i> Admin Dashboard</h2>
+
+      <!--Statistics Cards-->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div
+            class="stat-card"
+            style="
+              background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%);
+            "
+          >
+            <i class="bi bi-people" style="font-size: 2rem"></i>
+            <h3 th:text="${totalCustomers}">0</h3>
+            <p>Total Customers</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div
+            class="stat-card"
+            style="
+              background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+            "
+          >
+            <i class="bi bi-arrow-repeat" style="font-size: 2rem"></i>
+            <h3 th:text="${totalTransactions}">0</h3>
+            <p>Total Transactions</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div
+            class="stat-card"
+            style="background: linear-gradient(135deg, #1e3c72, #2a5298)"
+          >
+            <i class="bi bi-cash-stack" style="font-size: 2rem"></i>
+            <h3
+              th:text="'₹' + ${#numbers.formatDecimal(totalBalance, 0, 'COMMA', 0, 'POINT')}"
+            >
+              0
+            </h3>
+            <p>Total Balance</p>
+          </div>
+        </div>
+      </div>
+      <!--Financial Summary-->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-success text-white">
+              <h5><i class="bi bi-graph-up-arrow"></i> Financial Summary</h5>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tr>
+                  <td><strong>Total Deposits:</strong></td>
+                  <td
+                    class="text-end text-success"
+                    th:text="'₹' + ${#numbers.formatDecimal(totalDeposits, 0, 'COMMA', 2, 'POINT')}"
+                  ></td>
+                </tr>
+                <tr>
+                  <td><strong>Total Withdrawals:</strong></td>
+                  <td
+                    class="text-end text-danger"
+                    th:text="'₹' + ${#numbers.formatDecimal(totalWithdrawals, 0, 'COMMA', 2, 'POINT')}"
+                  ></td>
+                </tr>
+                <tr>
+                  <td><strong>Net Flow:</strong></td>
+                  <td
+                    class="text-end text-primary"
+                    th:text="'₹' + ${#numbers.formatDecimal(totalDeposits - totalWithdrawals, 0, 'COMMA', 2, 'POINT')}"
+                  ></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-warning">
+              <h5>
+                <i class="bi bi-exclamation-triangle"></i> Pending Approvals
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <span>Pending Accounts:</span>
+                <span
+                  class="badge bg-warning"
+                  th:text="${pendingAccounts.size()}"
+                  >0</span
+                >
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span>Pending Loans:</span>
+                <span class="badge bg-warning" th:text="${pendingLoans.size()}"
+                  >0</span
+                >
+              </div>
+              <hr />
+              <a href="/admin/accounts/pending" class="btn btn-warning btn-sm"
+                >Review Accounts</a
+              >
+              <a href="/admin/loans" class="btn btn-warning btn-sm"
+                >Review Loans</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Recent Transactions -->
+      <div class="card">
+        <div class="card-header">
+          <h5><i class="bi bi-clock-history"></i> Recent Transactions</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Account</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="txn : ${recentTransactions}">
+                <td
+                  th:text="${#temporals.format(txn.transactionDate, 'dd-MM-yyyy HH:mm')}"
+                ></td>
+                <td th:text="${txn.account.accountNumber}"></td>
+                <td>
+                  <span
+                    class="badge"
+                    th:classappend="${txn.type == 'DEPOSIT' or txn.type == 'TRANSFER_IN' ? 'bg-success' : 'bg-danger'}"
+                    th:text="${txn.type}"
+                  ></span>
+                </td>
+                <td
+                  th:text="'₹' + ${#numbers.formatDecimal(txn.amount, 0, 'COMMA', 2, 'POINT')}"
+                ></td>
+                <td th:text="${txn.description}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
