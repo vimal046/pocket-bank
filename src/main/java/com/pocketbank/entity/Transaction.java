@@ -3,6 +3,8 @@ package com.pocketbank.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.pocketbank.entity.enums.TransactionType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -31,33 +33,30 @@ public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private TransactionType type;
-	
-	@Column(nullable = false,precision = 15,scale=2)
+
+	@Column(nullable = false, precision = 15, scale = 2)
 	private BigDecimal amount;
-	
-	@Column(nullable = false,precision = 15,scale=2)
+
+	@Column(nullable = false, precision = 15, scale = 2)
 	private BigDecimal balanceAfter;
-	
+
 	@Column(length = 500)
 	private String description;
-	
-	//For transfer recipt account number
+
+	// For transfer recipt account number
 	private String recipientAccountNumber;
-	
+
 	@Column(nullable = false)
 	@Builder.Default
-	private LocalDateTime transactionDate=LocalDateTime.now();
-	
-	//Many-to-One 
+	private LocalDateTime transactionDate = LocalDateTime.now();
+
+	// Many-to-One
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "account_id",nullable = false)
+	@JoinColumn(name = "account_id", nullable = false)
 	@ToString.Exclude
 	private Account account;
-}
-enum TransactionType{
-	DEPOSIT,WITHDRAWAL,TRANSFER_IN,TRANSFER_OUT,FD_CREATION,LOAN_DISBURSEMENT
 }

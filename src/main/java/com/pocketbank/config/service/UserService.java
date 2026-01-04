@@ -61,8 +61,7 @@ public class UserService implements UserDetailsService {
 
 	// Update user profile
 	@Transactional
-	public User updateProfile(Long userId,
-			User updatedUser) {
+	public User updateProfile(Long userId, User updatedUser) {
 		User user = findById(userId);
 		user.setFullName(updatedUser.getFullName());
 		user.setEmail(updatedUser.getEmail());
