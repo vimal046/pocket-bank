@@ -3,8 +3,6 @@
 PocketBank is a full-stack banking management system built using **Java 17** and **Spring Boot**.  
 It simulates real-world banking workflows and demonstrates secure authentication, financial transactions, and clean backend architecture.
 
-This project is intended to showcase **Java backend and Spring Boot skills** for interviews and job applications.
-
 ---
 
 ## ✨ Key Features
