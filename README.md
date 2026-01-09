@@ -250,7 +250,7 @@ pocketbank/
 **Vimal**  
 Aspiring Java Backend / Spring Boot Developer
 
-- GitHub: [https://github.com/yourusername](https://github.com/vimal046)
+- GitHub: [https://github.com/vimal046](https://github.com/vimal046)
 - LinkedIn: [https://linkedin.com/in/vimal046](https://linkedin.com/in/vimal046)
 
 ---
