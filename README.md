@@ -24,6 +24,7 @@ This project is intended to showcase **Java backend and Spring Boot skills** for
 ## 🛠 Tech Stack
 
 ### Backend
+
 - Java 17
 - Spring Boot
 - Spring Security
@@ -31,11 +32,13 @@ This project is intended to showcase **Java backend and Spring Boot skills** for
 - Hibernate
 
 ### Frontend
+
 - Thymeleaf
 - Bootstrap 5
 - JavaScript
 
 ### Database & Tools
+
 - MySQL
 - Maven
 - Git
@@ -48,74 +51,97 @@ This project is intended to showcase **Java backend and Spring Boot skills** for
 ## 📸 Screenshots
 
 ### Landing Page
+
 ![Landing Page](screenshots/1-landing-page.png)
 
 ### Authentication
+
 #### Login
+
 ![Login Page](screenshots/2-login.png)
 
 #### Registration
+
 ![Registration Page](screenshots/3-register.png)
 
 ---
 
 ### Customer Dashboard
+
 ![Customer Dashboard](screenshots/4-customer-dashboard.png)
 
 ---
 
 ### Account Management
+
 #### My Accounts
+
 ![Accounts List](screenshots/5-accounts-list.png)
 
 #### Create Account
+
 ![Create Account](screenshots/6-create-account.png)
 
 ---
 
 ### Transactions
+
 #### Deposit
+
 ![Deposit](screenshots/7-deposit.png)
 
 #### Withdraw
+
 ![Withdraw](screenshots/8-withdraw.png)
 
 #### Transfer
+
 ![Transfer](screenshots/9-transfer.png)
 
 ---
 
 ### Loan Management
+
 #### Loans List
+
 ![Loans](screenshots/11-loans-list.png)
 
 #### Apply Loan
+
 ![Apply Loan](screenshots/12-apply-loan.png)
 
 ---
 
 ### Fixed Deposits
+
 #### My Fixed Deposits
+
 ![Fixed Deposits](screenshots/13-fixed-deposits.png)
 
 #### Create Fixed Deposit
+
 ![Create FD](screenshots/14-create-fd.png)
 
 ---
 
 ### Admin Dashboard
+
 ![Admin Dashboard](screenshots/16-admin-dashboard.png)
 
 #### Financial Reports
+
 ![Financial Reports](screenshots/17-financial-reports.png)
 
 #### Pending Accounts
+
 ![Pending Accounts](screenshots/18-pending-accounts.png)
 
 #### Loan Management
+
 ![Loan Management](screenshots/19-loan-management.png)
 
 #### User Details
+
 ![User Details](screenshots/20-user-details.png)
 
 ---
@@ -127,6 +153,7 @@ This project is intended to showcase **Java backend and Spring Boot skills** for
 - Mockito for mocking dependencies
 
 Run tests:
+
 ```bash
 mvn test
 ```
@@ -145,7 +172,7 @@ mvn test
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/pocketbank.git
+git clone https://github.com/vimal046/pocketbank.git
 cd pocketbank
 ```
 
@@ -218,19 +245,13 @@ pocketbank/
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
 ## 👨‍💻 Author
 
 **Vimal**  
 Aspiring Java Backend / Spring Boot Developer
 
-- GitHub: [https://github.com/yourusername](https://github.com/yourusername)
-- LinkedIn: [https://linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- GitHub: [https://github.com/yourusername](https://github.com/vimal046)
+- LinkedIn: [https://linkedin.com/in/vimal046](https://linkedin.com/in/vimal046)
 
 ---
 
